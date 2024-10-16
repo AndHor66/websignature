@@ -1,6 +1,25 @@
-<p>&copy; <span id="current-year"></span> Magically woven by <a href="https://www.hornicek.uk" target="_blank">Hornicek</a></p>
+<p id="dynamic-signature" style="margin: 0;">&copy; <span id="current-year"></span> Magically woven by 
+<a href="https://www.hornicek.uk" target="_blank" style="text-decoration: none;">Hornicek</a></p>
 
 <script>
-  // Automatically update the year
+// Automatically update the year using JavaScript
+document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('current-year').textContent = new Date().getFullYear();
+  
+  // Get the color of the parent footer and apply it to the signature text
+  const parentFooter = document.getElementById('dynamic-footer').parentElement;
+  const computedStyles = window.getComputedStyle(parentFooter);
+  const footerTextColor = computedStyles.getPropertyValue('color');
+  
+  // Apply the detected footer text color to the signature text
+  document.getElementById('dynamic-signature').style.color = footerTextColor;
+});
 </script>
+
+<style>
+  /* Ensure the background of the footer remains transparent */
+  #dynamic-signature {
+    background: transparent;
+  }
+</style>
+
